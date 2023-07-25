@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="padded">
+<!--        <item name="android:layout_marginTop">10dp</item>-->
+    </style>
+    <style name="CustomActionBar" parent="@android:style/Widget.ActionBar">
+        <item name="android:background">#000000</item>
+        <item name="android:titleTextStyle">@style/CustomActionBarText</item>
+    </style>
+
+    <style name="CustomActionBarText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+</resources>

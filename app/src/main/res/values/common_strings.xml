@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="use_master">Connect</string>
+    <string name="cancel">Cancel</string>
+    <string name="master_uri_hint">http://localhost:11311/</string>
+    <string name="uri_text">Master URI:</string>
+    <string name="connection_text">Trying to reach master&#8230;</string>
+
+</resources>

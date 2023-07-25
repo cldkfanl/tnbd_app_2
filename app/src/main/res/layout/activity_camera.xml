@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/padded"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.CameraActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/design_default_color_primary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Cam"
+            android:textAlignment="center"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp" />
+        <Button
+            android:id="@+id/RvizB"
+            android:text="Rviz"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="150dp"/>
+
+        <Button
+            android:id="@+id/MapB"
+            android:text="Map"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <org.ros.android.view.RosImageView
+        android:id="@+id/image_View"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/button_up"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/arrow_upward"
+        app:layout_constraintBottom_toTopOf="@+id/button_down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/button_down"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/arrow_downward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/button_left"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintBottom_toTopOf="@+id/button_down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_up" />
+
+    <ImageButton
+        android:id="@+id/button_right"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/arrow_right_alt"
+        app:layout_constraintBottom_toTopOf="@+id/button_down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_up" />
+
+    <ImageButton
+        android:id="@+id/button_re"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/refresh"
+        app:layout_constraintBottom_toTopOf="@+id/button_down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_up" />
+
+    <TextView
+        android:id="@+id/text_OnOff"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="220dp"
+        android:text="OFF"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Switch
+        android:id="@+id/switch_OnOff"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="200dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+</androidx.constraintlayout.widget.ConstraintLayout>
