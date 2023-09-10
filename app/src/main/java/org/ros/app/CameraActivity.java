@@ -31,10 +31,13 @@ import org.ros.node.topic.Publisher;
 import sensor_msgs.CompressedImage;
 import std_msgs.String;
 import geometry_msgs.Twist;
+import std_msgs.String;
+
 
 public class CameraActivity  extends AppCompatRosActivity {
 
     private RosImageView<CompressedImage> camera_View;
+    private Publisher<std_msgs.String> controlnav_publisher;
     private Publisher<Twist> cmd_publisher;
     private Toolbar toolbar;
     private ImageButton button_up, button_down, button_left, button_right, button_re;
@@ -150,10 +153,19 @@ public class CameraActivity  extends AppCompatRosActivity {
                     angularVel = 0.0;
                     linearVel = 0.0;
                     startPublishingCmdVel();
+
+                    std_msgs.String NavMsg = controlnav_publisher.newMessage();
+                    NavMsg.setData("end");
+                    controlnav_publisher.publish(NavMsg);
                 }
                 else{
+
                     text_OnOff.setText("OFF");
                     stopPublishingCmdVel();
+
+                    std_msgs.String NavMsg = controlnav_publisher.newMessage();
+                    NavMsg.setData("start");
+                    controlnav_publisher.publish(NavMsg);
                 }
             }
         });
@@ -199,14 +211,16 @@ public class CameraActivity  extends AppCompatRosActivity {
         nodeConfiguration.setMasterUri(getMasterUri());
         nodeMainExecutor.execute(camera_View, nodeConfiguration);
 
-        NodeMain nodeMain = new NodeMain(){
+
+        NodeMain nodeMainnav = new NodeMain(){
             @Override
             public GraphName getDefaultNodeName() {
                 return GraphName.of("camera_node");
             }
             @Override
             public void onStart(ConnectedNode connectedNode) {
-                cmd_publisher = connectedNode.newPublisher("turtle1/cmd_vel", Twist._TYPE);
+                controlnav_publisher = connectedNode.newPublisher("control_nav", String._TYPE);
+
             }
             @Override
             public void onShutdown(Node node) {
@@ -218,7 +232,29 @@ public class CameraActivity  extends AppCompatRosActivity {
             public void onError(Node node, Throwable throwable) {
             }
         };
-        nodeMainExecutor.execute(nodeMain, nodeConfiguration);
+        nodeMainExecutor.execute(nodeMainnav, nodeConfiguration);
+
+
+        NodeMain nodeMaincmd = new NodeMain(){
+            @Override
+            public GraphName getDefaultNodeName() {
+                return GraphName.of("camera_node");
+            }
+            @Override
+            public void onStart(ConnectedNode connectedNode) {
+                cmd_publisher = connectedNode.newPublisher("cmd_vel", Twist._TYPE);
+            }
+            @Override
+            public void onShutdown(Node node) {
+            }
+            @Override
+            public void onShutdownComplete(Node node) {
+            }
+            @Override
+            public void onError(Node node, Throwable throwable) {
+            }
+        };
+        nodeMainExecutor.execute(nodeMaincmd, nodeConfiguration);
     }
 
 
